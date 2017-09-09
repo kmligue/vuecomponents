@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Vue Components</title>
+	</head>
+	<body>
+		<div id="app">
+			<sidebar></sidebar>
+			<main-content></main-content>
+		</div>
+
+		<script src="https://unpkg.com/vue"></script>
+		<script>
+			Vue.component('sidebar', {
+				template: `
+					<aside>Sidebar</aside>
+				`
+			})
+
+			Vue.component('main-content', {
+				template: `
+					<div>Main content</div>
+				`
+			})
+
+			let app = new Vue({
+				el: '#app',
+			})
+		</script>
+	</body>
+</html>
