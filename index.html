@@ -6,21 +6,21 @@
 	</head>
 	<body>
 		<div id="app">
-			<sidebar></sidebar>
-			<main-content></main-content>
+			<user></user>
 		</div>
 
 		<script src="https://unpkg.com/vue"></script>
 		<script>
-			Vue.component('sidebar', {
+			Vue.component('user', {
+				data() {
+					return {
+						name: 'Kelvin'
+					}
+				},
 				template: `
-					<aside>Sidebar</aside>
-				`
-			})
-
-			Vue.component('main-content', {
-				template: `
-					<div>Main content</div>
+					<div class="user">
+						{{ name }}
+					</div>
 				`
 			})
 
