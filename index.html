@@ -6,26 +6,43 @@
 	</head>
 	<body>
 		<div id="app">
-			<user></user>
+			<post></post>
 		</div>
 
 		<script src="https://unpkg.com/vue"></script>
 		<script>
-			Vue.component('user', {
+			let User = {
 				data() {
 					return {
 						name: 'Kelvin'
 					}
 				},
+				template: `<div class="user">{{ name }}</div>`
+			}
+
+			let Post = {
+				data() {
+					return {
+						title: 'Lorem ipsum dolor sit amet.'
+					}
+				},
+				components: {
+					'user': User
+				},
 				template: `
-					<div class="user">
-						{{ name }}
+					<div class="post">
+						<h1>{{ title }}</h1>
+						<p>lorem ipsum dolor sit amet, consecteur adipisicing elit.</p>
+						<user></user>
 					</div>
 				`
-			})
+			}
 
 			let app = new Vue({
 				el: '#app',
+				components: {
+					'post': Post
+				}
 			})
 		</script>
 	</body>
