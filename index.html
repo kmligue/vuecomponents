@@ -6,34 +6,53 @@
 	</head>
 	<body>
 		<div id="app">
-			<post></post>
+			<posts></posts>
 		</div>
 
 		<script src="https://unpkg.com/vue"></script>
 		<script>
 			let User = {
-				data() {
-					return {
-						name: 'Kelvin'
-					}
-				},
-				template: `<div class="user">{{ name }}</div>`
+				props: [
+					'user'
+				],
+				template: `
+					<div class="user">
+						{{ user.name }}
+					</div>
+				`
 			}
 
 			let Post = {
-				data() {
-					return {
-						title: 'Lorem ipsum dolor sit amet.'
-					}
-				},
 				components: {
 					'user': User
 				},
+				props: [
+					'post'
+				],
 				template: `
 					<div class="post">
-						<h1>{{ title }}</h1>
-						<p>lorem ipsum dolor sit amet, consecteur adipisicing elit.</p>
-						<user></user>
+						<h1>{{ post.title }}</h1>
+						<user :user="post.user"></user>
+					</div>
+				`
+			}
+
+			let Posts = {
+				components: {
+					'post': Post
+				},
+				data() {
+					return {
+						posts: [
+							{ id: 1, title: 'Post one', user: { name: 'Kelvin' } },
+							{ id: 2, title: 'Post two', user: { name: 'Liam' } },
+							{ id: 3, title: 'Post three', user: { name: 'Cedric' } },
+						]
+					}
+				},
+				template: `
+					<div class="posts">
+						<post v-for="post in posts" :post="post" key="post.id"></post>
 					</div>
 				`
 			}
@@ -41,7 +60,7 @@
 			let app = new Vue({
 				el: '#app',
 				components: {
-					'post': Post
+					'posts': Posts
 				}
 			})
 		</script>
